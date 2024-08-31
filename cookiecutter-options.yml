@@ -1,0 +1,9 @@
+default_context:
+    project_name: "STOP-API"
+    app_name: "STOP_APP"
+    python_version: "3.8"
+    admin_user_username: "henrique"
+    admin_user_email: "pincellihenrique9@gmail.com"
+    admin_user_password: "fatec@2024"
+    use_celery: "no"
+    wsgi_server: "none"
