@@ -19,3 +19,5 @@ RUN pip install -e .
 COPY STOP_APP STOP_APP/
 
 EXPOSE 5000
+
+CMD ["python", "STOP_APP/app.py"]
