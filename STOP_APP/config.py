@@ -1,13 +1,10 @@
 """DEFAULT VARIABLES"""
 
-# >>>>>>>>>DATABASE CONFIGS>>>>>>>>>
-SQLALCHEMY_DATABASE_URI = "sqlite:///database.db"
-SQLALCHEMY_TRACK_MODIFICATIONS = False
-# <<<<<<<<<DATABASE CONFIGS<<<<<<<<<
+# >>>>>>>>>API CONFIGS>>>>>>>>>
+STOP_JWT_SECRET_KEY = "HS256"
+# <<<<<<<<<API CONFIGS<<<<<<<<<
 
-# >>>>>>>>>EMAIL CONFIGS>>>>>>>>>
-SMTP_HOST = "smtp.gmail.com"
-SMTP_PORT = 587
-SMTP_USER = "rickpincelli@gmail.com"
-SMTP_PASWORD = "aqjl azga tfeq wszb"
-# <<<<<<<<<EMAIL CONFIGS<<<<<<<<<
+# >>>>>>>>>DATABASE CONFIGS>>>>>>>>>
+STOP_SQLALCHEMY_DATABASE_URI = "sqlite:///database.db"
+STOP_SQLALCHEMY_TRACK_MODIFICATIONS = False
+# <<<<<<<<<DATABASE CONFIGS<<<<<<<<<

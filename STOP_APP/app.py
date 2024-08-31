@@ -7,7 +7,7 @@ from STOP_APP.extensions import apispec
 from STOP_APP.extensions import db
 from STOP_APP.extensions import jwt
 from STOP_APP.extensions import migrate
-from STOP_APP.config import SQLALCHEMY_DATABASE_URI, SQLALCHEMY_TRACK_MODIFICATIONS
+from STOP_APP.config import STOP_SQLALCHEMY_DATABASE_URI, STOP_SQLALCHEMY_TRACK_MODIFICATIONS, STOP_JWT_SECRET_KEY
 from datetime import timedelta
 
 
@@ -20,12 +20,12 @@ def create_app(testing=False):
         app.config["TESTING"] = True
 
     # >>>>>>>>>Database Settings>>>>>>>>>
-    app.config["SQLALCHEMY_DATABASE_URI"] = SQLALCHEMY_DATABASE_URI
-    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = SQLALCHEMY_TRACK_MODIFICATIONS
+    app.config["SQLALCHEMY_DATABASE_URI"] = STOP_SQLALCHEMY_DATABASE_URI
+    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = STOP_SQLALCHEMY_TRACK_MODIFICATIONS
     # <<<<<<<<<Database Settings<<<<<<<<<
 
     # >>>>>>>>>JWT Settings>>>>>>>>>
-    app.config["JWT_SECRET_KEY"] = "HS256"
+    app.config["JWT_SECRET_KEY"] = STOP_JWT_SECRET_KEY
     app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(hours=10)
     # <<<<<<<<<JWT Settings<<<<<<<<<
 
