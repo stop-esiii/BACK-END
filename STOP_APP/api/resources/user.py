@@ -121,14 +121,10 @@ class UserList(Resource):
           content:
             application/json:
               schema:
-                allOf:
-                  - $ref: '#/components/schemas/PaginatedResult'
-                  - type: object
-                    properties:
-                      results:
-                        type: array
-                        items:
-                          $ref: '#/components/schemas/UserSchema'
+                properties:
+                  results:
+                    type: array
+                    items: UserSchema
     post:
       tags:
         - Users
