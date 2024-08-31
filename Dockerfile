@@ -17,6 +17,5 @@ RUN pip install -r requirements.txt
 RUN pip install -e .
 
 COPY STOP_APP STOP_APP/
-COPY migrations migrations/
 
 EXPOSE 5000
