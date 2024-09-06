@@ -6,7 +6,7 @@ from STOP_APP.api.resources import UserResource, UserList, AuthResource, \
                                    RecoverResource
 
 
-blueprint = Blueprint("api", __name__, url_prefix="/api/v1")
+blueprint = Blueprint("api", __name__, url_prefix="/api")
 api = Api(blueprint)
 
 # >>>>>>>>>USERS>>>>>>>>>
