@@ -1,6 +1,6 @@
 from STOP_APP.sql.models import User
 from STOP_APP.sql.repository.user_repository import UserRepository
-from sqlalchemy import and_
+from sqlalchemy import or_
 
 
 class UserService(UserRepository):
@@ -8,11 +8,19 @@ class UserService(UserRepository):
     def validate_username_email(self, payload):
         check_list = []
         if "username" in payload.keys():
-            check_username = User.query.filter(and_(User.username==payload["username"], User.active==True)).first()
+            check_username = User.query.filter(or_(
+                    User.username == payload["username"],
+                    User.email == payload["username"]),
+                    User.active == True
+            ).first()
             if check_username is not None:
                 check_list.append("Esse nome de usuário já existe.")
         if "email" in payload.keys():
-            check_email = User.query.filter(and_(User.email==payload["email"], User.active==True)).first()
+            check_email = User.query.filter(or_(
+                    User.email == payload["email"],
+                    User.username == payload["email"]),
+                    User.active == True
+            ).first()
             if check_email is not None:
                 check_list.append("Esse email já está em uso.")
 
