@@ -4,9 +4,17 @@ import os
 
 # >>>>>>>>>API CONFIGS>>>>>>>>>
 STOP_JWT_SECRET_KEY = os.getenv("STOP_JWT_SECRET_KEY", "")
+STOP_JWT_ALGORITHM = os.getenv("STOP_JWT_ALGORITHM", "")
 # <<<<<<<<<API CONFIGS<<<<<<<<<
 
 # >>>>>>>>>DATABASE CONFIGS>>>>>>>>>
 STOP_SQLALCHEMY_DATABASE_URI = os.getenv("STOP_SQLALCHEMY_DATABASE_URI", "")
 STOP_SQLALCHEMY_TRACK_MODIFICATIONS = os.getenv("STOP_SQLALCHEMY_TRACK_MODIFICATIONS", "")
 # <<<<<<<<<DATABASE CONFIGS<<<<<<<<<
+
+# >>>>>>>>>EMAIL CONFIGS>>>>>>>>>
+STOP_SMTP_HOST = os.getenv("STOP_SMTP_HOST", "")
+STOP_SMTP_PORT = os.getenv("STOP_SMTP_PORT", "")
+STOP_SMTP_USER = os.getenv("STOP_SMTP_USER", "")
+STOP_SMTP_PASWORD = os.getenv("STOP_SMTP_PASWORD", "")
+# <<<<<<<<<EMAIL CONFIGS<<<<<<<<<

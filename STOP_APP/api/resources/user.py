@@ -1,10 +1,16 @@
 from flask import request
 from flask_restful import Resource
-from flask_jwt_extended import jwt_required
-from STOP_APP.api.schemas import UserSchema
-from STOP_APP.models import User
+from flask_jwt_extended import jwt_required, get_jwt
+from STOP_APP.api.schemas import UserSchemaPOST, UserSchemaGET, UserSchemaPUT
+from STOP_APP.sql.models import User
 from STOP_APP.extensions import db
 from STOP_APP.commons.pagination import paginate
+from STOP_APP.sql.services import Service, UserService
+from datetime import datetime
+
+
+service = Service()
+service_user = UserService()
 
 
 class UserResource(Resource):
@@ -28,7 +34,7 @@ class UserResource(Resource):
               schema:
                 type: object
                 properties:
-                  user: UserSchema
+                  user: UserSchemaGET
         404:
           description: user does not exists
     put:
@@ -45,7 +51,7 @@ class UserResource(Resource):
         content:
           application/json:
             schema:
-              UserSchema
+              UserSchemaPUT
       responses:
         200:
           content:
@@ -55,8 +61,8 @@ class UserResource(Resource):
                 properties:
                   msg:
                     type: string
-                    example: user updated
-                  user: UserSchema
+                    example: Usuário atualizado.
+                  user: UserSchemaGET
         404:
           description: user does not exists
     delete:
@@ -78,7 +84,7 @@ class UserResource(Resource):
                 properties:
                   msg:
                     type: string
-                    example: user deleted
+                    example: Usuário deletado.
         404:
           description: user does not exists
     """
@@ -86,26 +92,68 @@ class UserResource(Resource):
     method_decorators = [jwt_required()]
 
     def get(self, user_id):
-        schema = UserSchema()
-        user = User.query.get_or_404(user_id)
-        return {"user": schema.dump(user)}
+        # >>>>>>>>>Validate request>>>>>>>>>
+        claims = get_jwt()
+        validate = service.validate_request(claims)
+        if not validate["status"]:
+            return validate, 400
+        validate = service.validate_permission(claims, [1, 2, 3, 4])
+        if not validate["status"]:
+            return validate, 400
+        # if validate["user"].id != user_id:
+        #     return {"status": False, "msg": "Operação inválida."}, 400
+        # <<<<<<<<<Validate request<<<<<<<<<
+
+        schema = UserSchemaGET()
+        user = User.query.filter_by(id=user_id, active=True).first_or_404()
+        return {"user": schema.dump(user)}, 200
 
     def put(self, user_id):
-        schema = UserSchema(partial=True)
-        user = User.query.get_or_404(user_id)
-        user = schema.load(request.json, instance=user)
+        # >>>>>>>>>Validate request>>>>>>>>>
+        claims = get_jwt()
+        validate = service.validate_request(claims)
+        if not validate["status"]:
+            return validate, 400
+        validate = service.validate_permission(claims, [1, 2, 3, 4])
+        if not validate["status"]:
+            return validate, 400
+        if validate["user"].id != user_id:
+            return {"status": False, "msg": "Operação inválida."}, 400
+        # <<<<<<<<<Validate request<<<<<<<<<
 
-        db.session.commit()
+        user = User.query.filter_by(id=user_id, active=True).first_or_404()
 
-        return {"msg": "user updated", "user": schema.dump(user)}
+        # Load request
+        payload = UserSchemaPUT().load(request.json)
+
+        # Update user in DataBase
+        user = service_user.update_user_service(user, payload)
+        if not user["status"]:
+            return user, 400
+
+        return {"msg": "Usuário atualizado.", "user": UserSchemaGET().dump(user["data"])}, 200
 
     def delete(self, user_id):
-        user = User.query.get_or_404(user_id)
-        db.session.delete(user)
+        # >>>>>>>>>Validate request>>>>>>>>>
+        claims = get_jwt()
+        validate = service.validate_request(claims)
+        if not validate["status"]:
+            return validate, 400
+        validate = service.validate_permission(claims, [1, 2])
+        if not validate["status"]:
+            return validate, 400
+        # <<<<<<<<<Validate request<<<<<<<<<
+
+        User.query.filter_by(id=user_id, active=True).first_or_404()
+        # >>>>>>>>>Logical exclusion>>>>>>>>>
+        User.query.filter(User.id==user_id).update({
+            "active": 0,
+            "dt_update": datetime.now()
+        })
         db.session.commit()
+        # <<<<<<<<<Logical exclusion<<<<<<<<<
 
-        return {"msg": "user deleted"}
-
+        return {"msg": "Usuário deletado."}, 200
 
 class UserList(Resource):
     """Creation and get_all
@@ -124,7 +172,7 @@ class UserList(Resource):
                 properties:
                   results:
                     type: array
-                    items: UserSchema
+                    items: UserSchemaGET
     post:
       tags:
         - Users
@@ -134,7 +182,7 @@ class UserList(Resource):
         content:
           application/json:
             schema:
-              UserSchema
+              UserSchemaPOST
       responses:
         201:
           content:
@@ -144,22 +192,33 @@ class UserList(Resource):
                 properties:
                   msg:
                     type: string
-                    example: user created
-                  user: UserSchema
+                    example: Usuário criado.
+                  user: UserSchemaPOST
     """
 
-    # method_decorators = [jwt_required()]
-
+    @jwt_required()
     def get(self):
-        schema = UserSchema(many=True)
-        query = User.query
-        return paginate(query, schema)
+        # >>>>>>>>>Validate request>>>>>>>>>
+        claims = get_jwt()
+        validate = service.validate_request(claims)
+        if not validate["status"]:
+            return validate, 400
+        validate = service.validate_permission(claims, [1, 2])
+        if not validate["status"]:
+            return validate, 400
+        # <<<<<<<<<Validate request<<<<<<<<<
+
+        schema = UserSchemaGET(many=True)
+        query = User.query.filter_by(active=True)
+        return paginate(query, schema), 200
 
     def post(self):
-        schema = UserSchema()
-        user = schema.load(request.json)
+        # Load request
+        payload = UserSchemaPOST().load(request.json)
 
-        db.session.add(user)
-        db.session.commit()
+        # Add user in DataBase
+        user = service_user.add_user_service(payload)
+        if not user["status"]:
+            return user, 400
 
-        return {"msg": "user created", "user": schema.dump(user)}, 201
+        return {"msg": "Usuário criado.", "user": UserSchemaGET().dump(user["data"])}, 201

@@ -1,7 +1,6 @@
 from flask import Flask
-from flask_jwt_extended import JWTManager
+# from flask_jwt_extended import JWTManager
 from STOP_APP import api
-from STOP_APP import auth
 from STOP_APP import manage
 from STOP_APP.extensions import apispec
 from STOP_APP.extensions import db
@@ -36,7 +35,6 @@ def create_app(testing=False):
 
     return app
 
-
 def configure_extensions(app):
     """Configure flask extensions"""
     # >>>>>>>>>Ensures that the database and tables are created within the context of the app>>>>>>>>>
@@ -47,11 +45,9 @@ def configure_extensions(app):
     jwt.init_app(app)
     migrate.init_app(app, db)
 
-
 def configure_cli(app):
     """Configure Flask 2.0's cli for easy entity management"""
     app.cli.add_command(manage.init)
-
 
 def configure_apispec(app):
     """Configure APISpec for swagger support"""
@@ -71,10 +67,8 @@ def configure_apispec(app):
         },
     )
 
-
 def register_blueprints(app):
     """Register all blueprints for application"""
-    app.register_blueprint(auth.views.blueprint)
     app.register_blueprint(api.views.blueprint)
 
 application = create_app(testing=False)
