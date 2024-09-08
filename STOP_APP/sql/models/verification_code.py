@@ -7,7 +7,7 @@ class VerificationCode(db.Model):
     __tablename__ = "VerificationCode"
 
     id = db.Column("id_verification_code", db.Integer, primary_key=True)
-    id_user = db.Column("id_user", db.Integer, db.ForeignKey("User.id_user"), nullable=False)
+    id_user = db.Column(db.Integer, db.ForeignKey("User.id_user"), nullable=False)
     _verification_code = db.Column("verification_code", db.Text)
     dt_insert = db.Column(db.DateTime(), default=db.func.current_timestamp(), nullable=False)
     dt_update = db.Column(db.DateTime(), default=db.func.current_timestamp(), nullable=False)

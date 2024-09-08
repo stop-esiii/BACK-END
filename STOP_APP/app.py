@@ -1,5 +1,5 @@
 from flask import Flask
-# from flask_jwt_extended import JWTManager
+from flask_cors import CORS
 from STOP_APP import api
 from STOP_APP import manage
 from STOP_APP.extensions import apispec
@@ -8,7 +8,6 @@ from STOP_APP.extensions import jwt
 from STOP_APP.extensions import migrate
 from STOP_APP.config import STOP_SQLALCHEMY_DATABASE_URI, STOP_SQLALCHEMY_TRACK_MODIFICATIONS, STOP_JWT_SECRET_KEY
 from datetime import timedelta
-
 
 def create_app(testing=False):
     """Application factory, used to create application"""
@@ -27,6 +26,10 @@ def create_app(testing=False):
     app.config["JWT_SECRET_KEY"] = STOP_JWT_SECRET_KEY
     app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(hours=10)
     # <<<<<<<<<JWT Settings<<<<<<<<<
+
+    # >>>>>>>>>CORS Settings>>>>>>>>>
+    CORS(app)
+    # <<<<<<<<<CORS Settings<<<<<<<<<
 
     configure_extensions(app)
     configure_cli(app)
@@ -74,5 +77,4 @@ def register_blueprints(app):
 application = create_app(testing=False)
 
 if __name__ == "__main__":
-
     application.run(host="0.0.0.0", port=5000, debug=True, use_reloader=False, threaded=True)
