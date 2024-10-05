@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_cors import CORS
+from flask_socketio import SocketIO
 from STOP_APP import api
 from STOP_APP import manage
 from STOP_APP.extensions import apispec
@@ -27,9 +28,11 @@ def create_app(testing=False):
     app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(hours=10)
     # <<<<<<<<<JWT Settings<<<<<<<<<
 
-    # >>>>>>>>>CORS Settings>>>>>>>>>
+    # >>>>>>>>>Settings>>>>>>>>>
     CORS(app)
-    # <<<<<<<<<CORS Settings<<<<<<<<<
+    # <<<<<<<<<Settings<<<<<<<<<
+
+    
 
     configure_extensions(app)
     configure_cli(app)
@@ -75,6 +78,7 @@ def register_blueprints(app):
     app.register_blueprint(api.views.blueprint)
 
 application = create_app(testing=False)
+socketio = SocketIO(application, cors_allowed_origins="*", async_mode="eventlet")
 
 if __name__ == "__main__":
-    application.run(host="0.0.0.0", port=5000, debug=True, use_reloader=False, threaded=True)
+    socketio.run(application, host="0.0.0.0", port=5000, debug=True)

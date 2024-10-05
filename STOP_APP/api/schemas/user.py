@@ -32,6 +32,7 @@ class UserSchemaGET(Schema):
     image = fields.Str()
     dt_insert = fields.DateTime()
     dt_update = fields.DateTime()
+    themes = fields.Str()
 
 class UserSchemaPUT(Schema):
 
@@ -46,4 +47,7 @@ class UserSchemaPUT(Schema):
     )
     image = fields.Str(
         validate=validate.Length(max=65535, error="Os dados da imagem não devem exceder 65535 caracteres.")
+    )
+    themes = fields.Str(
+        validate=validate.Length(max=65535, error="Os dados dos temas não devem exceder 65535 caracteres.")
     )

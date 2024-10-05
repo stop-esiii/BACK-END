@@ -1,5 +1,5 @@
 from STOP_APP.sql.models import User
-from STOP_APP.sql.repository.user_repository import UserRepository
+from STOP_APP.sql.repository import UserRepository
 from sqlalchemy import or_
 
 

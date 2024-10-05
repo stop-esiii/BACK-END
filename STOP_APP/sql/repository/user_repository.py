@@ -20,5 +20,6 @@ class UserRepository():
         user.username = data["username"] if "username" in data.keys() else user.username
         user.email = data["email"] if "email" in data.keys() else user.email
         user.image = data["image"] if "image" in data.keys() else user.image
+        user.themes = data["themes"] if "themes" in data.keys() else user.themes
         db.session.commit()
         return user

@@ -1,5 +1,5 @@
 from STOP_APP.sql.services import Service
-from STOP_APP.sql.repository.recover_repository import RecoverRepository
+from STOP_APP.sql.repository import RecoverRepository
 from STOP_APP.config import STOP_SMTP_HOST, STOP_SMTP_PORT, STOP_SMTP_USER, STOP_SMTP_PASWORD
 from STOP_APP.sql.models import VerificationCode
 from sqlalchemy import and_
