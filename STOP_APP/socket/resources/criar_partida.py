@@ -13,15 +13,15 @@ def generate_code(length=4):
     return code
 
 
-@socketio.on("create_match")
-def create_match(data):
+@socketio.on("create_lobby")
+def create_lobby(data):
     # Create "code_lobby"
     code_lobby = generate_code()
     # Persist lobby
     result = LobbyService().create_lobby(data, code_lobby)
 
     join_room(code_lobby)
-    socketio.emit("create_match", {
+    socketio.emit("create_lobby", {
         "msg": f"Código da sala: {code_lobby}.",
         "themes": result.themes.split(", ")}
     )
