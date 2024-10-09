@@ -1,7 +1,7 @@
 from flask import Flask, request
 from flask_cors import CORS
 from flask_socketio import SocketIO
-from STOP_APP.socket.resources.criar_partida import *
+from STOP_APP.socket.resources.create_lobby import *
 from STOP_APP import api
 from STOP_APP import manage
 from STOP_APP.extensions import apispec
@@ -91,6 +91,10 @@ def handle_message(message):
 @socketio.on('disconnect')
 def handle_disconnect():
     print(f'Cliente desconectado: {request.sid}')
+
+@socketio.on("create_lobby")
+def create_lobby(data):
+    handle_create_lobby(socketio, data)
 
 if __name__ == "__main__":
     socketio.run(application, host="0.0.0.0", port=5000, debug=True)
