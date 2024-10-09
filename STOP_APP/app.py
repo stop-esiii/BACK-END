@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request
 from flask_cors import CORS
 from flask_socketio import SocketIO
 from STOP_APP import api
@@ -79,6 +79,19 @@ def register_blueprints(app):
 
 application = create_app(testing=False)
 socketio = SocketIO(application, cors_allowed_origins="*", async_mode="eventlet")
+
+@socketio.on('connect')
+def handle_connect():
+    print(f'Novo cliente conectado: {request.sid}')
+
+@socketio.on('message')
+def handle_message(message):
+    print(f'Mensagem recebida: {message}')
+    socketio.emit('message', message)
+
+@socketio.on('disconnect')
+def handle_disconnect():
+    print(f'Cliente desconectado: {request.sid}')
 
 if __name__ == "__main__":
     socketio.run(application, host="0.0.0.0", port=5000, debug=True)
