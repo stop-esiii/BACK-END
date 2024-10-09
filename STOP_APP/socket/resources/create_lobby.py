@@ -1,5 +1,4 @@
 from flask_socketio import join_room
-from STOP_APP.app import socketio
 from STOP_APP.sql.services import LobbyService
 
 
