@@ -27,7 +27,7 @@ class AuthService(AuthRepository):
             access_token = create_access_token(identity=user.id, additional_claims=additional_claims, expires_delta=timedelta(hours=10))
             check = self.add_token_to_database(user, access_token)
             if check:
-                return {"status": True, "access_token": access_token}
+                return {"status": True, "id_user": user.id, "access_token": access_token}
 
     def revoke_user(self, validate):
         # >>>>>>>>>Logical deletion>>>>>>>>>
