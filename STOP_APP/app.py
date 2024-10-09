@@ -1,6 +1,7 @@
 from flask import Flask, request
 from flask_cors import CORS
 from flask_socketio import SocketIO
+from STOP_APP.socket.resources.criar_partida import *
 from STOP_APP import api
 from STOP_APP import manage
 from STOP_APP.extensions import apispec
@@ -31,8 +32,6 @@ def create_app(testing=False):
     # >>>>>>>>>Settings>>>>>>>>>
     CORS(app)
     # <<<<<<<<<Settings<<<<<<<<<
-
-    
 
     configure_extensions(app)
     configure_cli(app)
