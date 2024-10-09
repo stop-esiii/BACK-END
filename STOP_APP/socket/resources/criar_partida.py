@@ -21,7 +21,7 @@ def create_match(data):
     result = LobbyService().create_lobby(data, code_lobby)
 
     join_room(code_lobby)
-    return {
+    socketio.emit("create_match", {
         "msg": f"Código da sala: {code_lobby}.",
-        "themes": result.themes.split(", ")
-    }
+        "themes": result.themes.split(", ")}
+    )
