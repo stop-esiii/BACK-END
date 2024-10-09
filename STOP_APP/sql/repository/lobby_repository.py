@@ -8,16 +8,16 @@ import random
 class LobbyRepository():
 
     categories = [
-        "Frutas", "Animais", "Cores",
-        "CEP (Cidades, Estados e Países)", "Filmes", "Nomes próprios",
-        "Profissões", "Objetos", "Flores",
-        "Times de futebol", "Marcas", "Personagens fictícios",
-        "Comidas", "Atores/Atrizes", "Cantores/Bandas",
-        "Celebridades", "Adjetivos", "Programas de TV",
-        "Doenças", "Hobbies", "Super-heróis",
-        "Instrumentos musicais", "Carros", "Rios",
-        "Línguas", "Esportes", "Partes do corpo",
-        "Bebidas", "Plantas", "Tecnologia"
+        "Fruta", "Animal", "Cor",
+        "CEP", "Filme", "Nome",
+        "Profissão", "Objeto", "Flor",
+        "Time", "Marca", "Personagem",
+        "Comida", "Ator/Atriz", "Cantor/Banda",
+        "Celebridade", "Adjetivo", "Programa de TV",
+        "Doença", "Hobbie", "Super-herói",
+        "Instrumento musical", "Carro", "Rio",
+        "Idioma", "Esporte", "Parte do corpo",
+        "Bebida", "Planta", "Tecnologia"
     ]
 
     def add_lobby(self, data, code_lobby):
