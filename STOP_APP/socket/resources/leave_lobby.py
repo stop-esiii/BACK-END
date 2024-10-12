@@ -13,7 +13,7 @@ def handle_leave_lobby(socketio, data):
 
     # Return data for Front-End
     socketio.emit("leave_lobby", {
-        "msg": f"{result["username"]} saiu"
+        "msg": f"{result['username']} saiu"
         },
         to=result["lobby"].code_lobby
     )
