@@ -12,5 +12,6 @@ def handle_create_lobby(socketio, data):
     # Return data for Front-End
     socketio.emit("create_lobby", {
         "msg": f"Código da sala: {result.code_lobby}.",
-        "themes": result.themes.split(", ")}
+        "themes": result.themes.split(", ")},
+        to=result.code_lobby
     )

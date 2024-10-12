@@ -1,7 +1,7 @@
 from flask import Flask, request
 from flask_cors import CORS
 from flask_socketio import SocketIO
-from STOP_APP.socket.resources.create_lobby import *
+from STOP_APP.socket.resources import handle_create_lobby, handle_enter_lobby, handle_leave_lobby, handle_disconnect_lobby
 from STOP_APP import api
 from STOP_APP import manage
 from STOP_APP.extensions import apispec
@@ -79,22 +79,21 @@ def register_blueprints(app):
 application = create_app(testing=False)
 socketio = SocketIO(application, cors_allowed_origins="*", async_mode="eventlet")
 
-@socketio.on('connect')
-def handle_connect():
-    print(f'Novo cliente conectado: {request.sid}')
-
-@socketio.on('message')
-def handle_message(message):
-    print(f'Mensagem recebida: {message}')
-    socketio.emit('message', message)
-
-@socketio.on('disconnect')
-def handle_disconnect():
-    print(f'Cliente desconectado: {request.sid}')
-
 @socketio.on("create_lobby")
 def create_lobby(data):
     handle_create_lobby(socketio, data)
+
+@socketio.on("enter_lobby")
+def enter_lobby(data):
+    handle_enter_lobby(socketio, data)
+
+@socketio.on("leave_lobby")
+def leave_lobby(data):
+    handle_leave_lobby(socketio, data)
+
+@socketio.on("disconnect")
+def disconnect():
+    handle_disconnect_lobby(socketio)
 
 if __name__ == "__main__":
     socketio.run(application, host="0.0.0.0", port=5000, debug=True)

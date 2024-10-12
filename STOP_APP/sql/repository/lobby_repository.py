@@ -35,3 +35,26 @@ class LobbyRepository():
         db.session.add(model)
         db.session.commit()
         return model
+    
+    def update_join_lobby(self, lobby):
+        lobby.number_members = lobby.number_members + 1
+        lobby.dt_update = datetime.now()
+        db.session.commit()
+        return lobby
+    
+    def update_leave_lobby(self, lobby):
+        lobby.number_members = lobby.number_members - 1
+        lobby.dt_update = datetime.now()
+        db.session.commit()
+        return lobby
+    
+    def update_disconnect_lobby(self, code_lobby):
+        lobby = self.model.query.filter(and_(
+            self.model.code_lobby==code_lobby,
+            self.model.active==True)).first()
+        if lobby is None:
+            return None
+        lobby.number_members = lobby.number_members - 1
+        lobby.dt_update = datetime.now()
+        db.session.commit()
+        return lobby
