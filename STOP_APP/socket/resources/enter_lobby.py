@@ -5,7 +5,7 @@ from STOP_APP.sql.services import LobbyService
 def handle_enter_lobby(socketio, data):
     # Persist lobby
     result = LobbyService().enter_lobby(data)
-    if not result["status"]:
+    if "status" in result.keys():
         # Return data for Front-End
         socketio.emit("enter_lobby", {
             "status": False,
