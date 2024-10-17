@@ -32,9 +32,9 @@ class LobbyService(LobbyRepository):
     
     def enter_lobby(self, data):
         # >>>>>>>>>Check if lobby exists or full>>>>>>>>>
-        lobby = self.model.query.filter(and_(
-            self.model.code_lobby==data["code_lobby"],
-            self.model.active==True)).first()
+        lobby = Lobby.query.filter(and_(
+            Lobby.code_lobby==data["code_lobby"],
+            Lobby.active==True)).first()
         if lobby is None:
             return {"status": False, "msg": "Lobby not found."}
         if lobby.number_members == lobby.max_members:

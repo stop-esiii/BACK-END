@@ -13,6 +13,7 @@ def handle_enter_lobby(socketio, data):
             },
             to=data["code_lobby"]
         )
+        return True
 
     # Appending client to the room
     join_room(result.code_lobby)
