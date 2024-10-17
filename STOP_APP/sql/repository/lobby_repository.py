@@ -23,7 +23,7 @@ class LobbyRepository():
     def add_lobby(self, data, code_lobby):
         model = Lobby()
         model.id_user = data["id_user"]
-        model.code_lobby = code_lobby
+        model.code_lobby = str(code_lobby)
         model.time = data["time"]
         model.rounds = data["rounds"]
         model.max_members = data["max_members"]
