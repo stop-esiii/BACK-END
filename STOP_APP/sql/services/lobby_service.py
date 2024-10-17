@@ -42,7 +42,8 @@ class LobbyService(LobbyRepository):
         # <<<<<<<<<Check if lobby exists or full<<<<<<<<<
 
         # Update Lobby
-        return self.update_join_lobby(lobby)
+        self.update_join_lobby(lobby)
+        return lobby
     
     def leave_lobby(self, data):
         # >>>>>>>>>Check if lobby exists or full>>>>>>>>>
