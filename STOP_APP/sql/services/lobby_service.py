@@ -24,7 +24,7 @@ class LobbyService(LobbyRepository):
         code = ''.join(random.choice(characters) for _ in range(length))
         return code
 
-    def create_lobby(self, data, code_lobby):
+    def create_lobby(self, data):
         # Create "code_lobby"
         code_lobby = self.generate_code()
         # Save Lobby
