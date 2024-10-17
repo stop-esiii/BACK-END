@@ -85,6 +85,8 @@ def create_lobby(data):
 
 @socketio.on("enter_lobby")
 def enter_lobby(data):
+    print("==DATA==")
+    print(data)
     handle_enter_lobby(socketio, data)
 
 @socketio.on("leave_lobby")
