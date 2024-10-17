@@ -16,7 +16,7 @@ def handle_enter_lobby(socketio, data):
 
     # Appending client to the room
     print("RESULT")
-    print(result.code_lobby)
+    print(result)
     join_room(result.code_lobby)
 
     # Return data for Front-End
