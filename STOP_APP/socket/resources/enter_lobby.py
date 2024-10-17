@@ -6,7 +6,13 @@ def handle_enter_lobby(socketio, data):
     # Persist lobby
     result = LobbyService().enter_lobby(data)
     if not result["status"]:
-        raise Exception(result["msg"])
+        # Return data for Front-End
+        socketio.emit("enter_lobby", {
+            "status": False,
+            "msg": result["msg"]
+            },
+            to=data["code_lobby"]
+        )
 
     # Appending client to the room
     join_room(result.code_lobby)

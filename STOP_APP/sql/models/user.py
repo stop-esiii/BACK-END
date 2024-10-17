@@ -45,13 +45,17 @@ class User(db.Model):
         db.session.commit()
 
 @event.listens_for(User.__table__, 'after_create')
-def create_admin_user(*args, **kwargs):
-    default_admin = User(
-        id_type_role=1,
-        username="dev",
-        email="pincellihenrique9@gmail.com",
-        password="devdev",
-        active=True
-    )
-    db.session.add(default_admin)
+def create_admin_users(*args, **kwargs):
+    users = []
+    for i in range(1, 6):
+        user = User(
+            id_type_role=1,
+            username=f"dev{i}",
+            email=f"dev{i}@example.com",
+            password="devdev",
+            active=True
+        )
+        users.append(user)
+    
+    db.session.bulk_save_objects(users)
     db.session.commit()
