@@ -5,7 +5,7 @@ from STOP_APP.sql.services import LobbyService
 def handle_enter_lobby(socketio, data):
     # Persist lobby
     result = LobbyService().enter_lobby(data)
-    if "status" in result.keys():
+    if not result["status"]:
         # Return data for Front-End
         socketio.emit("enter_lobby", {
             "status": False,
@@ -13,18 +13,18 @@ def handle_enter_lobby(socketio, data):
             },
             to=data["code_lobby"]
         )
-        return True
+        return False
 
     # Appending client to the room
-    join_room(result.code_lobby)
+    join_room(result["lobby"].code_lobby)
 
     # Return data for Front-End
     socketio.emit("enter_lobby", {
-        "time": result.time,
-        "rounds": result.rounds,
-        "max_members": result.max_members,
-        "number_members": result.number_members + 1,
-        "themes": result.themes.split(", ")
+        "time": result["lobby"].time,
+        "rounds": result["lobby"].rounds,
+        "max_members": result["lobby"].max_members,
+        "number_members": result["lobby"].number_members + 1,
+        "themes": result["lobby"].themes.split(", ")
         },
-        to=result.code_lobby
+        to=result["lobby"].code_lobby
     )
