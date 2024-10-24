@@ -1,0 +1,39 @@
+stop = {
+    "lobby1": [
+        {
+            "id_user": int,
+            "username": int,
+            "score": int,
+            "receive_payload": 
+            {
+                "category1": "string",
+                ...
+                "category10": "string"
+            }
+        },
+        {
+            "id_user": int,
+            "username": int,
+            "score": int,
+            "receive_payload": 
+            {
+                "category1": "string",
+                ...
+                "category10": "string"
+            }
+        }
+    ],
+    "lobby2": [
+
+    ]
+}
+
+validations = {
+    "lobby1": [
+        {
+            "category1": ["string"],
+            ...
+            "category10": ["string"]
+        }
+    ]
+}
