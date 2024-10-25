@@ -5,5 +5,5 @@ from STOP_APP.socket.resources.disconnect_lobby import handle_disconnect_lobby
 
 
 __all__ = [
-    "handle_create_lobby", "handle_enter_lobby", "handle_leave_lobby", "handle_disconnect_lobby"
+    "handle_create_lobby", "handle_enter_lobby", "handle_leave_lobby", "handle_disconnect_lobby", "handle_stop_trigger"
 ]

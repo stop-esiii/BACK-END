@@ -1,7 +1,7 @@
 from flask import Flask, request
 from flask_cors import CORS
 from flask_socketio import SocketIO
-from STOP_APP.socket.resources import handle_create_lobby, handle_enter_lobby, handle_leave_lobby, handle_disconnect_lobby
+from STOP_APP.socket.resources import handle_create_lobby, handle_enter_lobby, handle_leave_lobby, handle_disconnect_lobby, handle_stop_trigger
 from STOP_APP import api
 from STOP_APP import manage
 from STOP_APP.extensions import apispec
@@ -94,6 +94,10 @@ def leave_lobby(data):
 @socketio.on("disconnect")
 def disconnect():
     handle_disconnect_lobby(socketio)
+
+@socketio.on("stop_trigger")
+def stop(data):
+    handle_stop_trigger(socketio, data)
     
 if __name__ == "__main__":
     socketio.run(application, host="0.0.0.0", port=5000, debug=True)
