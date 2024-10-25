@@ -94,6 +94,6 @@ def leave_lobby(data):
 @socketio.on("disconnect")
 def disconnect():
     handle_disconnect_lobby(socketio)
-    
+
 if __name__ == "__main__":
     socketio.run(application, host="0.0.0.0", port=5000, debug=True)
