@@ -1,7 +1,6 @@
 # stop = {
 #     "ABCD": [
 #         {
-#             "id_user": 1,
 #             "username": henrique,
 #             "score": 0,
 #             "receive_payload": 
@@ -12,7 +11,6 @@
 #             }
 #         },
 #         {
-#             "id_user": 2,
 #             "username": cassio,
 #             "score": 0,
 #             "receive_payload": 
@@ -23,7 +21,6 @@
 #             }
 #         },
 #         {
-#             "id_user": 3,
 #             "username": romero,
 #             "score": 0,
 #             "receive_payload": 
@@ -34,7 +31,6 @@
 #             }
 #         },
 #         {
-#             "id_user": 4,
 #             "username": garro,
 #             "score": 0,
 #             "receive_payload": 

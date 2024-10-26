@@ -2,7 +2,7 @@ from flask import Flask, request
 from flask_cors import CORS
 from flask_socketio import SocketIO
 from STOP_APP.socket.resources import handle_create_lobby, handle_enter_lobby, handle_leave_lobby, \
-                                      handle_disconnect_lobby, handle_trigger_stop, handle_validate_stop, \
+                                      handle_disconnect_lobby, handle_trigger_stop, handle_receive_stop, \
                                       handle_return_stop, handle_receive_validate, handle_calculate_stop
 from STOP_APP import api
 from STOP_APP import manage
@@ -101,9 +101,9 @@ def disconnect():
 def stop(data):
     handle_trigger_stop(socketio, data)
 
-@socketio.on("validate_stop")
+@socketio.on("receive_stop")
 def stop(data):
-    handle_validate_stop(socketio, data)
+    handle_receive_stop(socketio, data)
 
 @socketio.on("return_stop")
 def stop(data):
