@@ -20,7 +20,7 @@ def handle_receive_validate(socketio, data):
     storage_stop[lobby] = lobbyUsers
     validations[lobby].clear()
     
-    socketio.emit("trigger_stop", usersScores, to=lobby)
+    socketio.emit("receive_validate", usersScores, to=lobby)
 
 
 def get_words_count(usersValidations):
