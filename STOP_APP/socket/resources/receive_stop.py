@@ -3,7 +3,7 @@ from STOP_APP.socket.models import storage_stop
 
 def handle_receive_stop(socketio, data):
     # Get lobby in storage
-    storage = storage_stop[f"{data["code_lobby"]}"]
+    storage = storage_stop[f"{data['code_lobby']}"]
 
     # Append user data
     storage.append({
