@@ -1,24 +1,21 @@
 from STOP_APP.socket.models import storage_stop
+from STOP_APP.sql.models import User
 
 
 def handle_receive_stop(socketio, data):
     # Get lobby in storage
     storage = storage_stop[f"{data['code_lobby']}"]
 
+    # get username by id_user
+    user = User().query.filter(
+        User().id==data["id_user"]).first().username
+
     # Append user data
     storage.append({
-        "username": data["username"],
+        "username": user,
         "score": 0,
-        "receive_payload": {
-            "category_1": data["category_1"],
-            "category_2": data["category_2"],
-            "category_3": data["category_3"],
-            "category_4": data["category_4"],
-            "category_5": data["category_5"],
-            "category_6": data["category_6"],
-            "category_7": data["category_7"],
-            "category_8": data["category_8"],
-            "category_9": data["category_9"],
-            "category_10": data["category_10"]
-        }
+        "receive_payload": data["receive_payload"]
     })
+
+    # Save changes
+    storage_stop[f"{data['code_lobby']}"] = storage
