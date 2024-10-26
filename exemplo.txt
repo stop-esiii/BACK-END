@@ -50,9 +50,9 @@ stop = {
             "score": 0,
             "receive_payload": 
             {
-                "fruta": "Banana",
+                "category_1": "Banana",
                 ...
-                "cep": "Brasilândia"
+                "category_10": "Brasilândia"
             }
         },
         {
@@ -61,9 +61,9 @@ stop = {
             "score": 0,
             "receive_payload": 
             {
-                "fruta": "Banana",
+                "category_1": "Banana",
                 ...
-                "cep": "Brasilândia"
+                "category_10": "Brasilândia"
             }
         },
         {
@@ -72,9 +72,9 @@ stop = {
             "score": 0,
             "receive_payload": 
             {
-                "fruta": "Bergamota",
+                "category_1": "Bergamota",
                 ...
-                "cep": "Bahamas"
+                "category_10": "Bahamas"
             }
         },
         {
@@ -83,9 +83,9 @@ stop = {
             "score": 0,
             "receive_payload": 
             {
-                "fruta": "Brócolis",
+                "category_1": "Brócolis",
                 ...
-                "cep": "Banana"
+                "category_10": "Banana"
             }
         }
     ],
@@ -97,24 +97,24 @@ stop = {
 validations = {
     "ABCD": [
         {
-            "fruta": ["Banana", "Bergamota"],
+            "category_1": ["Banana", "Bergamota"],
             ...
-            "cep": ["Bahamas", "Brasilândia"]
+            "category_10": ["Bahamas", "Brasilândia"]
         },
         {
-            "fruta": ["Banana", "Bergamota"],
+            "category_1": ["Banana", "Bergamota"],
             ...
-            "cep": ["Bahamas", "Brasilândia"]
+            "category_10": ["Bahamas", "Brasilândia"]
         },
         {
-            "fruta": ["Banana", "Bergamota"],
+            "category_1": ["Banana", "Bergamota"],
             ...
-            "cep": ["Bahamas", "Brasilândia"]
+            "category_10": ["Bahamas", "Brasilândia"]
         },
         {
-            "fruta": ["Banana", "Bergamota", "Brócolis"],
+            "category_1": ["Banana", "Bergamota", "Brócolis"],
             ...
-            "cep": ["Bahamas", "Brasilândia", "Banana"]
+            "category_10": ["Bahamas", "Brasilândia", "Banana"]
         }
     ]
 }

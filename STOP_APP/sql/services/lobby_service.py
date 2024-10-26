@@ -4,6 +4,7 @@ from STOP_APP.sql.services import Service
 from STOP_APP.sql.repository import LobbyRepository
 from STOP_APP.sql.models import Lobby, User
 from STOP_APP.extensions import db
+from STOP_APP.socket.models import storage_stop
 from sqlalchemy import or_, and_
 from datetime import datetime
 import random
@@ -29,7 +30,7 @@ class LobbyService(LobbyRepository):
         code_lobby = self.generate_code()
         # Save Lobby
         return self.add_lobby(data, code_lobby)
-    
+
     def enter_lobby(self, data):
         # >>>>>>>>>Check if lobby exists or full>>>>>>>>>
         lobby = self.model.query.filter(and_(
@@ -76,3 +77,22 @@ class LobbyService(LobbyRepository):
         if lobby_data is None:
             return False
         return lobby_data.code_lobby
+
+    def return_storage_stop(self, code_lobby):
+        # Search for the active lobby with the provided code
+        storage = storage_stop[f"{code_lobby}"]
+
+        # Dictionary for storing unique categories
+        words_by_category = {}
+
+        # Iterate through users in storage
+        for user in storage:
+            for category, word in user["receive_payload"].items():
+                if category not in words_by_category:
+                    words_by_category[category] = set()
+                words_by_category[category].add(word)
+
+        # Convert sets to lists
+        words_by_category = {category: list(words) for category, words in words_by_category.items()}
+
+        return words_by_category
