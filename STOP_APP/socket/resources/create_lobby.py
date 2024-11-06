@@ -17,6 +17,7 @@ def handle_create_lobby(socketio, data):
     # Return data for Front-End
     socketio.emit("create_lobby", {
         "msg": result.code_lobby,
+        "host": data["id_user"],
         "themes": result.themes.split(", ")},
         to=result.code_lobby
     )
