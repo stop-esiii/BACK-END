@@ -109,13 +109,13 @@ def stop(data):
 def stop(data):
     handle_return_stop(socketio, data)
 
-@socketio.on("receive_validate")
-def stop(data):
-    handle_receive_validate(socketio, data)
+# @socketio.on("receive_validate")
+# def stop(data):
+#     handle_receive_validate(socketio, data)
 
-@socketio.on("calculate_stop")
-def stop(data):
-    handle_calculate_stop(socketio, data)
+# @socketio.on("calculate_stop")
+# def stop(data):
+#     handle_calculate_stop(socketio, data)
 
 if __name__ == "__main__":
     socketio.run(application, host="0.0.0.0", port=5000, debug=True)

@@ -19,16 +19,17 @@ def handle_create_lobby(socketio, data):
     # Get username by "id_user"
     username = User().query.filter(and_(User.id==data["id_user"], User.active==True)).first().username
     # Get users in lobby_users
-    lobby_users[f"{data['code_lobby']}"] = []
+    lobby_users[f"{result.code_lobby}"] = []
     # Append user data
-    lobby_users[f"{data['code_lobby']}"].append({
+    lobby_users[f"{result.code_lobby}"].append({
         "id_user": data["id_user"],
-        "username": username
+        "username": username,
+        "host": data["id_user"]
     })
 
     # Return data for Front-End
     socketio.emit("create_lobby", {
-        "msg": result.code_lobby,
+        "code_lobby": result.code_lobby,
         "host": data["id_user"],
         "themes": result.themes.split(", ")
         },
