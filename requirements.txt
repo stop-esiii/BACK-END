@@ -23,7 +23,7 @@ Flask-Migrate==4.0.7
 Flask-RESTful==0.3.10
 Flask-SocketIO==5.4.1
 Flask-SQLAlchemy==3.1.1
-google-ai-generativelanguage==0.6.10
+google-ai-generativelanguage==0.1.0
 google-api-core==2.22.0
 google-api-python-client==2.151.0
 google-auth==2.36.0
