@@ -3,6 +3,8 @@
 #         {
 #             "username": henrique,
 #             "score": 0,
+#             "double_points": boolean,
+#             "autocomplete": boolean,
 #             "receive_payload": 
 #             {
 #                 "fruta": "Banana",
@@ -13,6 +15,8 @@
 #         {
 #             "username": cassio,
 #             "score": 0,
+#             "double_points": boolean,
+#             "autocomplete": boolean,
 #             "receive_payload": 
 #             {
 #                 "fruta": "Banana",
@@ -23,6 +27,8 @@
 #         {
 #             "username": romero,
 #             "score": 0,
+#             "double_points": boolean,
+#             "autocomplete": boolean,
 #             "receive_payload": 
 #             {
 #                 "fruta": "Bergamota",
@@ -33,6 +39,8 @@
 #         {
 #             "username": garro,
 #             "score": 0,
+#             "double_points": boolean,
+#             "autocomplete": boolean,
 #             "receive_payload": 
 #             {
 #                 "fruta": "Brócolis",

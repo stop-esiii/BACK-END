@@ -77,22 +77,3 @@ class LobbyService(LobbyRepository):
         if lobby_data is None:
             return False
         return lobby_data.code_lobby
-
-    def return_storage_stop(self, code_lobby):
-        # Search for the active lobby with the provided code
-        storage = storage_stop[f"{code_lobby}"]
-
-        # Dictionary for storing unique categories
-        words_by_category = {}
-
-        # Iterate through users in storage
-        for user in storage:
-            for category, word in user["receive_payload"].items():
-                if category not in words_by_category:
-                    words_by_category[category] = set()
-                words_by_category[category].add(word)
-
-        # Convert sets to lists
-        words_by_category = {category: list(words) for category, words in words_by_category.items()}
-
-        return words_by_category

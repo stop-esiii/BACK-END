@@ -14,6 +14,8 @@ def handle_receive_stop(socketio, data):
     storage.append({
         "username": user,
         "score": 0,
+        "double_points": data["double_points"],
+        "autocomplete": data["autocomplete"],
         "receive_payload": data["receive_payload"]
     })
 
