@@ -28,7 +28,7 @@ google-api-core==2.22.0
 google-api-python-client==2.151.0
 google-auth==2.36.0
 google-auth-httplib2==0.2.0
-google-generativeai==0.8.3
+google-generativeai
 googleapis-common-protos==1.65.0
 greenlet==3.0.3
 grpcio==1.67.1
