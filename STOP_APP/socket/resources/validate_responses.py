@@ -38,7 +38,7 @@ def get_temas_palavras(users, letra):
             if palavra == "" and userPayload["autocomplete"]:
                 word_request = f"classe: {tema} - letra: {letra}"
                 response = word_generation_model.generate_content(word_request)
-                palavra = response.text.replace("\n", "").split(' ')[0]
+                palavra = response.text.replace("\n", "").strip()
                 userPayload["receive_payload"][tema] = palavra
                 userPayload["autocomplete"] = False
 
