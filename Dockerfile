@@ -20,4 +20,4 @@ COPY STOP_APP STOP_APP/
 
 EXPOSE 5000
 
-CMD ["python", "STOP_APP/app.py"]
+CMD ["python", "-m", "STOP_APP.app"]
