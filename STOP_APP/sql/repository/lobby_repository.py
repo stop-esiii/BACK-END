@@ -9,13 +9,13 @@ class LobbyRepository():
 
     categories = [
         "Fruta", "Animal", "Cor",
-        "CEP", "Filme", "Nome",
+        "Cidade", "País/Nação", "Estado/Município", "Filme", "Nome de pessoa",
         "Profissão", "Objeto", "Flor",
         "Time", "Marca", "Personagem",
         "Comida", "Ator/Atriz", "Cantor/Banda",
         "Celebridade", "Adjetivo", "Programa de TV",
         "Doença", "Hobbie", "Super-herói",
-        "Instrumento musical", "Carro", "Rio",
+        "Instrumento musical", "Modelo de carro", "Nome de rio",
         "Idioma", "Esporte", "Parte do corpo",
         "Bebida", "Planta", "Tecnologia"
     ]
