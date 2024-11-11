@@ -3,7 +3,7 @@ from flask_cors import CORS
 from flask_socketio import SocketIO
 from STOP_APP.socket.resources import handle_create_lobby, handle_enter_lobby, handle_leave_lobby, \
                                       handle_disconnect_lobby, handle_trigger_stop, handle_receive_stop, \
-                                      handle_return_stop, handle_receive_validate, handle_calculate_stop
+                                      handle_return_stop, handle_receive_validate, handle_calculate_stop, handle_validate_responses
 from STOP_APP import api
 from STOP_APP import manage
 from STOP_APP.extensions import apispec
@@ -79,7 +79,7 @@ def register_blueprints(app):
     app.register_blueprint(api.views.blueprint)
 
 application = create_app(testing=False)
-socketio = SocketIO(application, cors_allowed_origins="*", async_mode="eventlet")
+socketio = SocketIO(application, cors_allowed_origins="*", async_mode="threading", async_handlers = True)
 
 @socketio.on("create_lobby")
 def create_lobby(data):
@@ -108,6 +108,10 @@ def stop(data):
 @socketio.on("return_stop")
 def stop(data):
     handle_return_stop(socketio, data)
+
+@socketio.on("validate_responses")
+def validate_responses(data):
+    handle_validate_responses(socketio, data)
 
 # @socketio.on("receive_validate")
 # def stop(data):

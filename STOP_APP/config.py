@@ -17,4 +17,5 @@ STOP_SMTP_HOST = os.getenv("STOP_SMTP_HOST", "")
 STOP_SMTP_PORT = os.getenv("STOP_SMTP_PORT", "")
 STOP_SMTP_USER = os.getenv("STOP_SMTP_USER", "")
 STOP_SMTP_PASWORD = os.getenv("STOP_SMTP_PASWORD", "")
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "")
 # <<<<<<<<<EMAIL CONFIGS<<<<<<<<<
