@@ -9,7 +9,7 @@ import string
 
 def handle_create_lobby(socketio, data):
     # Make a list of all the letters drawn
-    drawn_letters = random_letters()
+    drawn_letters = random_letters(data["rounds"])
 
     # Persist lobby
     result = LobbyService().create_lobby(data, drawn_letters)
