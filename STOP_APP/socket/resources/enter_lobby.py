@@ -41,6 +41,7 @@ def handle_enter_lobby(socketio, data):
         "max_members": result["lobby"].max_members,
         "number_members": result["lobby"].number_members,
         "themes": result["lobby"].themes.split(", "),
+        "letters": result["lobby"].letters.split(", ")
         "users": users
         },
         to=result["lobby"].code_lobby

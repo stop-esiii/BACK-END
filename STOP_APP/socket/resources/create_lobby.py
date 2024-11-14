@@ -8,8 +8,11 @@ import string
 
 
 def handle_create_lobby(socketio, data):
+    # Make a list of all the letters drawn
+    drawn_letters = random_letters()
+
     # Persist lobby
-    result = LobbyService().create_lobby(data)
+    result = LobbyService().create_lobby(data, drawn_letters)
 
     # Appending client to the room
     join_room(result.code_lobby)
@@ -28,9 +31,6 @@ def handle_create_lobby(socketio, data):
         "username": username,
         "host": data["id_user"]
     })
-
-    # Make a list of all the letters drawn
-    draw_letters = random_letters()
 
     # Return data for Front-End
     socketio.emit("create_lobby", {

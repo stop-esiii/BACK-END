@@ -13,6 +13,7 @@ class Lobby(db.Model):
     max_members = db.Column(db.Integer, nullable=False)
     number_members = db.Column(db.Integer, nullable=False)
     themes = db.Column(db.Text)
+    letters = db.Column(db.String(45), nullable=False)
     dt_insert = db.Column(db.DateTime(), default=db.func.current_timestamp(), nullable=False)
     dt_update = db.Column(db.DateTime(), default=db.func.current_timestamp(), nullable=False)
     active = db.Column(db.Boolean, default=True, nullable=False)

@@ -25,11 +25,11 @@ class LobbyService(LobbyRepository):
         code = ''.join(random.choice(characters) for _ in range(length))
         return code
 
-    def create_lobby(self, data):
+    def create_lobby(self, data, drawn_letters):
         # Create "code_lobby"
         code_lobby = self.generate_code()
         # Save Lobby
-        return self.add_lobby(data, code_lobby)
+        return self.add_lobby(data, code_lobby, drawn_letters)
 
     def enter_lobby(self, data):
         # >>>>>>>>>Check if lobby exists or full>>>>>>>>>

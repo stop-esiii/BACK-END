@@ -20,7 +20,7 @@ class LobbyRepository():
         "Bebida", "Planta", "Tecnologia"
     ]
 
-    def add_lobby(self, data, code_lobby):
+    def add_lobby(self, data, code_lobby, drawn_letters):
         model = Lobby()
         model.id_user = data["id_user"]
         model.code_lobby = str(code_lobby)
@@ -29,6 +29,7 @@ class LobbyRepository():
         model.max_members = data["max_members"]
         model.number_members = 1
         model.themes = str(random.sample(self.categories, 10)).replace("[", "").replace("]", "")
+        model.letters = str(drawn_letters.replace("[", "").replace("]", ""))
         model.dt_insert = datetime.now()
         model.dt_update = datetime.now()
         model.active = 1
