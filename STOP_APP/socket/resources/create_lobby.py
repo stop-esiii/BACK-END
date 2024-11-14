@@ -3,6 +3,8 @@ from STOP_APP.sql.services import LobbyService
 from STOP_APP.sql.models import User
 from STOP_APP.socket.models import storage_stop, validations, lobby_users
 from sqlalchemy import and_
+import random
+import string
 
 
 def handle_create_lobby(socketio, data):
@@ -27,11 +29,19 @@ def handle_create_lobby(socketio, data):
         "host": data["id_user"]
     })
 
+    # Make a list of all the letters drawn
+    draw_letters = random_letters()
+
     # Return data for Front-End
     socketio.emit("create_lobby", {
         "code_lobby": result.code_lobby,
         "host": data["id_user"],
-        "themes": result.themes.split(", ")
+        "themes": result.themes.split(", "),
+        "letters": draw_letters
         },
         to=result.code_lobby
     )
+
+def random_letters(quantidade=10):
+    # Gera uma lista de letras aleatórias minúsculas
+    return random.choices(string.ascii_lowercase, k=quantidade)
