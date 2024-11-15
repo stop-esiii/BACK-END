@@ -36,7 +36,7 @@ def handle_enter_lobby(socketio, data):
 
     # Return data for Front-End
     socketio.emit("enter_lobby", {
-        "time": result["lobby"].time,
+        "time": int(result["lobby"].time),
         "rounds": result["lobby"].rounds,
         "max_members": result["lobby"].max_members,
         "number_members": result["lobby"].number_members,
