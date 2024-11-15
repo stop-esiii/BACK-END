@@ -43,5 +43,4 @@ def handle_create_lobby(socketio, data):
     )
 
 def random_letters(quantidade=10):
-    # Gera uma lista de letras aleatórias minúsculas
-    return random.choices(string.ascii_lowercase, k=quantidade)
+    return random.sample(string.ascii_uppercase, k=quantidade)
