@@ -5,6 +5,7 @@ from STOP_APP.socket.models import storage_stop
 def handle_return_stop(socketio, data):
 
     # Get the list of players from the specific lobby
+    print(storage_stop)
     result = storage_stop[f"{data['code_lobby']}"]
 
     # Sort by score
