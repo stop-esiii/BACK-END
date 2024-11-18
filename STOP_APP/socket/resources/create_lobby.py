@@ -36,8 +36,8 @@ def handle_create_lobby(socketio, data):
     socketio.emit("create_lobby", {
         "code_lobby": result.code_lobby,
         "host": data["id_user"],
-        "themes": result.themes.split(", "),
-        "letters": drawn_letters
+        "themes": result.themes.replace("'", "").split(", "),
+        "letters": drawn_letters.replace("'", "")
         },
         to=result.code_lobby
     )
