@@ -1,6 +1,6 @@
 from STOP_APP.socket.models import storage_stop
 from STOP_APP.sql.models import User
-
+import logging
 
 def handle_receive_stop(socketio, data):
     # Get lobby in storage
@@ -11,6 +11,8 @@ def handle_receive_stop(socketio, data):
 
     # Check if the user is already in storage
     user_entry = next((entry for entry in storage if entry["username"] == user), None)
+
+    logging.warning(data)
 
     if user_entry:
         # Update existing user's data
