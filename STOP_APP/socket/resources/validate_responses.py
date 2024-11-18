@@ -7,6 +7,8 @@ def handle_validate_responses(socketio, data):
     letra = data["letra"]
     users = storage_stop[lobby]
 
+    logging.warning(users)
+
     temas_palavras = get_temas_palavras(users, letra)
 
     request_payload = generate_request_payload(temas_palavras, letra)
