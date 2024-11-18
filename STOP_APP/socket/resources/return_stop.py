@@ -14,6 +14,7 @@ def handle_return_stop(socketio, data):
     result = [{"username": player["username"], "score": player["score"]} for player in result]
 
     # Output the result with "socketio.emit"
+    print("=-=RETURN=-=")
     socketio.emit("return_stop", {
         "result": result
         },
