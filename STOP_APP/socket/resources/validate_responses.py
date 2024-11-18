@@ -17,7 +17,11 @@ def handle_validate_responses(socketio, data):
 
     formated_response = json.loads(response.text)
 
+    print(formated_response)
+
     response_payload = generate_response_payload(formated_response)
+
+    print(response_payload)
 
     socketio.emit("retrieve_validate_responses", response_payload, to=lobby)
 
