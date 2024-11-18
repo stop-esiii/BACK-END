@@ -8,7 +8,7 @@ def handle_receive_stop(socketio, data):
 
     # get username by id_user
     user = User().query.filter(
-        User().id==data["id_user"]).first().username
+        User.id==data["id_user"]).first().username
 
     # Append user data
     storage.append({
