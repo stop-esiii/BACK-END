@@ -1,12 +1,11 @@
 from STOP_APP.sql.services import LobbyService
 from STOP_APP.socket.models import storage_stop
+import json, logging
 
 
 def handle_return_stop(socketio, data):
 
-    # Get the list of players from the specific lobby
-    result = storage_stop[f"{data['code_lobby']}"]
-
+    logging.warning(storage_stop)
     # Get and process the list of players from the specific lobby in one step
     result = sorted(
         [{"username": player["username"], "score": player["score"]} for player in storage_stop[f"{data['code_lobby']}"]],
