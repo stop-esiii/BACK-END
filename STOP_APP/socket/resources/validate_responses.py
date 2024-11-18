@@ -1,6 +1,6 @@
 from STOP_APP.socket.models.gemini_model import word_generation_model, validation_model
 from STOP_APP.socket.models.storage_stop import storage_stop
-import json
+import json, logging
 
 def handle_validate_responses(socketio, data):
     lobby = data["code_lobby"]
@@ -17,11 +17,11 @@ def handle_validate_responses(socketio, data):
 
     formated_response = json.loads(response.text)
 
-    print(formated_response)
+    logging.warning(formated_response)
 
     response_payload = generate_response_payload(formated_response)
 
-    print(response_payload)
+    logging.warning(response_payload)
 
     socketio.emit("retrieve_validate_responses", response_payload, to=lobby)
 
