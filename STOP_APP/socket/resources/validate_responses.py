@@ -13,6 +13,8 @@ def handle_validate_responses(socketio, data):
 
     request_payload = generate_request_payload(temas_palavras, letra)
 
+    logging.warning("PAYLOAD DA IA: " + request_payload)
+
     response = validation_model.generate_content(request_payload)
 
     not_repeated_words = get_not_repeated_words(users)
