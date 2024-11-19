@@ -4,7 +4,6 @@ from STOP_APP.sql.models import User
 from STOP_APP.socket.models import storage_stop, validations, lobby_users
 from sqlalchemy import and_
 import random
-import string
 
 
 def handle_create_lobby(socketio, data):
@@ -43,4 +42,11 @@ def handle_create_lobby(socketio, data):
     )
 
 def random_letters(quantidade=10):
-    return random.sample(string.ascii_uppercase, k=quantidade)
+    # Most common and simple letters to fill in
+    letras_faceis = list("ABCDEGHIJLMNOPRSTV")
+
+    # Ensure that the quantity does not exceed the total number of letters available.
+    quantidade = min(quantidade, len(letras_faceis))
+
+    # Carry out the draw
+    return random.sample(letras_faceis, k=quantidade)
