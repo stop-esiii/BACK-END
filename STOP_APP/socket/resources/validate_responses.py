@@ -27,7 +27,7 @@ def handle_validate_responses(socketio, data):
 
     logging.warning(response_payload)
 
-    socketio.emit("retrieve_validate_responses", response_payload, to=lobby)
+    socketio.emit("validate_responses", response_payload, to=lobby)
 
     update_users_scores(users, formated_response, not_repeated_words)
         
