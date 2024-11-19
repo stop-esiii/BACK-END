@@ -15,8 +15,8 @@ class LobbyRepository():
         "Personagem", "Comida", "Ator/Atriz",
         "Cantor/Banda", "Adjetivo", "Programa de TV",
         "Hobbie", "Super-herói", "Instrumento musical",
-        "Modelo de carro", "Idioma", "Esporte",
-        "Parte do corpo", "Bebida", "Tecnologia"
+        "Idioma", "Esporte", "Parte do corpo",
+        "Bebida", "Tecnologia"
     ]
 
     def add_lobby(self, data, code_lobby, drawn_letters):
