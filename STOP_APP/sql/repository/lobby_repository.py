@@ -11,7 +11,7 @@ class LobbyRepository():
         "Fruta", "Animal", "Cor",
         "Cidade", "País/Nação", "Estado/Município",
         "Filme", "Nome próprio", "Profissão",
-        "Objeto", "Time",
+        "Objeto", "Time/Seleção",
         "Personagem", "Comida", "Ator/Atriz",
         "Cantor/Banda", "Adjetivo", "Programa de TV",
         "Hobby", "Super-herói", "Instrumento musical",
