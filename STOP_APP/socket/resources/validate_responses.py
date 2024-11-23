@@ -9,11 +9,14 @@ def handle_validate_responses(socketio, data):
 
     logging.warning(users)
 
+
+    logging.warning(users)
+
     temas_palavras = get_temas_palavras(users, letra)
 
     request_payload = generate_request_payload(temas_palavras, letra)
 
-    logging.warning("PAYLOAD DA IA: " + request_payload)
+    #logging.warning("PAYLOAD DA IA: " + request_payload)
 
     response = validation_model.generate_content(request_payload)
 
@@ -21,11 +24,11 @@ def handle_validate_responses(socketio, data):
 
     formated_response = json.loads(response.text)
 
-    logging.warning(formated_response)
+    #logging.warning(formated_response)
 
     response_payload = generate_response_payload(formated_response)
 
-    logging.warning(response_payload)
+    #logging.warning(response_payload)
 
     socketio.emit("validate_responses", response_payload, to=lobby)
 
