@@ -10,13 +10,13 @@ class LobbyRepository():
     categories = [
         "Fruta", "Animal", "Cor",
         "Cidade", "País/Nação", "Estado/Município",
-        "Filme", "Nome de pessoa", "Profissão",
-        "Objeto", "Planeta", "Time",
+        "Filme", "Nome próprio", "Profissão",
+        "Objeto", "Time",
         "Personagem", "Comida", "Ator/Atriz",
         "Cantor/Banda", "Adjetivo", "Programa de TV",
-        "Hobbie", "Super-herói", "Instrumento musical",
-        "Idioma", "Esporte", "Parte do corpo",
-        "Bebida", "Tecnologia"
+        "Hobby", "Super-herói", "Instrumento musical",
+        "Idioma", "Esporte", "Orgão/Parte do corpo",
+        "Bebida", "Tecnologia", "Marca famosa", "Verbo", "Sentimento/Emoção"
     ]
 
     def add_lobby(self, data, code_lobby, drawn_letters):
