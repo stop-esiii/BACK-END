@@ -77,7 +77,7 @@ def create_admin_users(*args, **kwargs):
     users.append(premium_user)
 
     premium_user = User(
-        id_type_role=1,
+        id_type_role=4,
         username="neymar",
         email="neymar@gmail.com",
         password="123456",
@@ -86,7 +86,7 @@ def create_admin_users(*args, **kwargs):
     users.append(premium_user)
 
     premium_user = User(
-        id_type_role=1,
+        id_type_role=3,
         username="ibape",
         email="ibape@gmail.com",
         password="123456",
